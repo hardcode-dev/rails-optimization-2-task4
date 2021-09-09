@@ -53,3 +53,14 @@ package-lock.json
 
 #sitemap
 /public/sitemap.xml.gz
+
+#gemset
+.ruby-gemset
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity
+
+#urls for siege
+siege_conf.txt
