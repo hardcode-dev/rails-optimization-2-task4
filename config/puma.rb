@@ -1,3 +1,9 @@
+# require 'prometheus_exporter/instrumentation'
+# PrometheusExporter::Instrumentation::ActiveRecord.start(
+#   custom_labels: { type: "puma_worker" }, 
+#   config_labels: [:database, :host]
+# )
+
 workers Integer(ENV["WEB_CONCURRENCY"] || 2)
 threads_count = Integer(ENV["MAX_THREADS"] || 5)
 threads threads_count, threads_count

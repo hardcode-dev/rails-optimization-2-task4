@@ -1,3 +1,5 @@
+include .dev_to/dev_to.mk
+
 .PHONY: run
 
 run:

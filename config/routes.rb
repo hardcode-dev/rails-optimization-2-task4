@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     registrations: "registrations"
   }
 
+  mount PgHero::Engine, at: "pghero"
+
+  
+
   authenticated :user, ->(user) { user.admin? } do
     mount DelayedJobWeb, at: "/delayed_job"
   end

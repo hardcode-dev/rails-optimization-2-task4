@@ -3,7 +3,8 @@ version: '7.1'
 # Define default environment variables to pass
 # to Docker Compose
 environment:
-  RAILS_ENV: development
+  RAILS_ENV: <%= ENV.fetch('RAILS_ENV', 'development') %>
+  RACK_ENV: <%= ENV.fetch('RACK_ENV', 'development') %>
 
 compose:
   files:

@@ -60,6 +60,7 @@ gem "kaminari", "~> 1.1"
 gem "libhoney", "~> 1.11"
 gem "liquid", "~> 4.0"
 gem "nokogiri", "~> 1.10"
+gem 'newrelic_rpm'
 gem "octokit", "~> 4.13"
 gem "omniauth", "~> 1.9"
 gem "omniauth-github", "~> 1.3"
@@ -89,7 +90,13 @@ gem "sdoc", "~> 1.0", group: :doc
 gem "serviceworker-rails", "~> 0.5"
 gem "share_meow_client", "~> 0.1"
 gem "sitemap_generator", "~> 6.0"
-gem "skylight", "~> 3.1"
+gem "skylight"
+gem "prometheus_exporter"
+# gem "pg_query"
+# gem 'yabeda-prometheus'
+gem 'dotenv-rails'
+gem 'rack-mini-profiler'
+gem "pghero"
 gem "slack-notifier", "~> 2.3"
 gem "sprockets", "~> 3.7"
 gem "staccato", "~> 0.5"
@@ -103,7 +110,7 @@ gem "validate_url", "~> 1.0"
 gem "webpacker", "~> 3.5"
 gem "webpush", "~> 0.3"
 
-group :development do
+group :development, :local_production do
   gem "better_errors", "~> 2.5"
   gem "binding_of_caller", "~> 0.8"
   gem "brakeman", "~> 4.4", require: false
@@ -117,7 +124,7 @@ group :development do
   gem "web-console", "~> 3.7"
 end
 
-group :development, :test do
+group :development, :test, :local_production do
   gem "capybara", "~> 3.13"
   gem "derailed", "~> 0.1"
   gem "erb_lint", "~> 0.0", require: false
@@ -136,7 +143,7 @@ group :development, :test do
 end
 
 group :test do
-  gem "approvals", "~> 0.0"
+  # gem "approvals", "~> 0.0"
   gem "chromedriver-helper", "~> 2.1"
   gem "database_cleaner", "~> 1.7"
   gem "factory_bot_rails", "~> 4.11"
