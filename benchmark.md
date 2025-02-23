@@ -39,48 +39,43 @@ Percentage of the requests served within a certain time (ms)
  100%   2054 (longest request)
 ```
 
-## После того как закешировали паршл
+## После того как закешировали паршл среднее время ответа уменьшилось в 2,5 раза
 
 ```bash
-Server Software:        
+Server Software:
 Server Hostname:        localhost
 Server Port:            3000
-
 Document Path:          /
-Document Length:        160220 bytes
-
+Document Length:        143451 bytes
 Concurrency Level:      5
-Time taken for tests:   31.519 seconds
+Time taken for tests:   2.669 seconds
 Complete requests:      100
-Failed requests:        67
-   (Connect: 0, Receive: 0, Length: 67, Exceptions: 0)
-Total transferred:      16123231 bytes
-HTML transferred:       16022065 bytes
-Requests per second:    3.17 [#/sec] (mean)
-Time per request:       1575.967 [ms] (mean)
-Time per request:       315.193 [ms] (mean, across all concurrent requests)
-Transfer rate:          499.55 [Kbytes/sec] received
-
+Failed requests:        0
+Total transferred:      14387400 bytes
+HTML transferred:       14345100 bytes
+Requests per second:    37.46 [#/sec] (mean)
+Time per request:       832.472 [ms] (mean)
+Time per request:       145.694 [ms] (mean, across all concurrent requests)
+Transfer rate:          5263.34 [Kbytes/sec] received
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0    0   0.1      0       1
-Processing:   286 1549 188.3   1558    1919
-Waiting:      286 1544 186.5   1551    1909
-Total:        286 1549 188.3   1558    1919
-
+Connect:        0    0   0.2      0       1
+Processing:    68  124  26.5    115     206
+Waiting:       66  122  26.1    112     205
+Total:         68  125  26.5    116     206
 Percentage of the requests served within a certain time (ms)
-  50%   1558
-  66%   1602
-  75%   1636
-  80%   1651
-  90%   1753
-  95%   1807
-  98%   1851
-  99%   1919
- 100%   1919 (longest request)
+  50%    116
+  66%    135
+  75%    143
+  80%    146
+  90%    157
+  95%    175
+  98%    198
+  99%    206
+ 100%    206 (longest request)
  ```
 
- ## на local_production окружении с кешированием и прекомпиляци ассетов
+ ## на local_production окружении с кешированием и прекомпиляци ассетов срднее время ответа уменьшилось почти в 5 раз
 
 ```bash
 Server Software:        
