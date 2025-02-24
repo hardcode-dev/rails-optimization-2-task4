@@ -6,6 +6,8 @@
 - [x] настроить NewRelic (docker compose -f docker-compose.yaml up -d)
 - [x] настроить rack-mini-profiler
 - [x] для нагрузки подготовил siege
+- [x] local_production
+- [] использовать альтернативу NewRelic
 
 ## Оптимизация
 
@@ -147,3 +149,85 @@ Percentage of the requests served within a certain time (ms)
 
 ## Заключение
 Как вердикт проверка теории о использовании кэшей для `articles/single_story` принесла свои результаты и ускорила повторные загрузки страницы в 2 раза.
+
+
+
+
+# Доп подкючение local_production
+
+При создании local_production окружении и использовании его, видны следующие улучшения максимально приближённые к продовому окруэениею.
+ - время загрузки посторной страницы занимает теперь не 588.4 ms, а 129 ms
+ - при нагрузки через `ab -n 100 -c 5 127.0.0.1:3000/`, уменьшилось в 10 раз среднее время по всем показателям
+ было
+ ```
+  Time per request:       10455.725 [ms] (mean)
+  Time per request:       2091.145 [ms] (mean, across all concurrent requests)
+ ```
+ стало
+ ```
+  Time per request:       1043.882 [ms] (mean)
+  Time per request:       208.776 [ms] (mean, across all concurrent requests)
+ ```
+
+<details>
+```
+/ (129.9 ms)
+event	duration (ms)	from start (ms)	query time (ms)
+GET http://localhost:3000/	46.0	+0.0	
+  Executing: stories#index	-29.6	+15.0	2 sql	4.0
+   Rendering: articles/index.html.erb	46.0	+39.4	2 sql	22.6
+    Rendering: stories/_main_stories_feed.html.er...	7.1	+85.7	
+   Rendering: layouts/application.html.erb	58.8	+40.0	
+show time with childrensnapshots20.5 % in sql
+client event	duration (ms)	from start (ms)
+Response	2.0	+160.0
+sharemore show trivial
+```
+
+```
+romaS:.dev_to/ (master✗) $ ab -n 100 -c 5 127.0.0.1:3000/   
+This is ApacheBench, Version 2.3 <$Revision: 1913912 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking 127.0.0.1 (be patient).....done
+
+
+Server Software:
+Server Hostname:        127.0.0.1
+Server Port:            3000
+
+Document Path:          /
+Document Length:        129969 bytes
+
+Concurrency Level:      5
+Time taken for tests:   20.878 seconds
+Complete requests:      100
+Failed requests:        99
+   (Connect: 0, Receive: 0, Length: 99, Exceptions: 0)
+Total transferred:      13115169 bytes
+HTML transferred:       13014935 bytes
+Requests per second:    4.79 [#/sec] (mean)
+Time per request:       1043.882 [ms] (mean)
+Time per request:       208.776 [ms] (mean, across all concurrent requests)
+Transfer rate:          613.47 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.0      0       0
+Processing:   394  968 548.3    787    2999
+Waiting:      392  958 549.7    779    2986
+Total:        394  968 548.3    787    2999
+
+Percentage of the requests served within a certain time (ms)
+  50%    787
+  66%    911
+  75%   1017
+  80%   1223
+  90%   1844
+  95%   2187
+  98%   2959
+  99%   2999
+ 100%   2999 (longest request)
+```
+</details>

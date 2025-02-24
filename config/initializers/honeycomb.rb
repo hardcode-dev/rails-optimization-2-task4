@@ -3,7 +3,7 @@ require "libhoney"
 key = ApplicationConfig["HONEYCOMB_API_KEY"]
 dataset = "dev.to-#{Rails.env}"
 
-$libhoney = if Rails.env.development? || Rails.env.test?
+$libhoney = if (Rails.env.development? || Rails.env.local_production?) || Rails.env.test?
               Libhoney::NullClient.new
             else
               Libhoney::Client.new(

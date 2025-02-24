@@ -83,7 +83,7 @@ module ApplicationHelper
   end
 
   def cloudinary(url, width = nil, _quality = 80, _format = "jpg")
-    return url if Rails.env.development? && (url.blank? || url.exclude?("http"))
+    return url if (Rails.env.development? || Rails.env.local_production?) && (url.blank? || url.exclude?("http"))
 
     service_path = "https://res.cloudinary.com/practicaldev/image/fetch"
 
@@ -101,7 +101,7 @@ module ApplicationHelper
   def cloud_cover_url(url)
     return if url.blank?
     return asset_path("triple-unicorn") if Rails.env.test?
-    return url if Rails.env.development?
+    return url if (Rails.env.development? || Rails.env.local_production?)
 
     width = 1000
     height = 420

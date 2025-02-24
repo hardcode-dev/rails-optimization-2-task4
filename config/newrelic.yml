@@ -64,3 +64,6 @@ staging:
 
 production:
   <<: *default_settings
+
+local_production:
+  <<: *default_settings
