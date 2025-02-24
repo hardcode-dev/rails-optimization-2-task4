@@ -9,6 +9,7 @@ x-app: &app
   environment: &env
     NODE_ENV: ${NODE_ENV:-development}
     RAILS_ENV: ${RAILS_ENV:-development}
+    RACK_ENV: ${RACK_ENV:-development}
   tmpfs:
     - /tmp
     - /app/tmp/pids

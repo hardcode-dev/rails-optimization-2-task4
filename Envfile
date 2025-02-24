@@ -53,6 +53,9 @@ variable :ALGOLIASEARCH_API_KEY, :String, default: only_in_test
 variable :ALGOLIASEARCH_APPLICATION_ID, :String, default: only_in_test
 variable :ALGOLIASEARCH_SEARCH_ONLY_KEY, :String, default: only_in_test
 
+# NewRelic
+variable :NEW_RELIC_LICENSE_KEY, :String, default: "Optional"
+
 # AWS for images storages
 variable :AWS_ID, :String, default: "Optional"
 variable :AWS_SECRET, :String, default: "Optional"
