@@ -98,6 +98,7 @@ Rails.application.configure do
   config.after_initialize do
     Bullet.enable = true
     Bullet.console = true
+    Rack::MiniProfiler.config.authorization_mode = :allow_all
   end
 end
 

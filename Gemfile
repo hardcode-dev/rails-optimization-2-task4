@@ -13,6 +13,10 @@ group :production do
   gem "nakayoshi_fork"
 end
 
+gem 'newrelic_rpm'
+gem 'newrelic-infinite_tracing'
+gem 'rack-mini-profiler'
+
 gem "psych", "< 4"
 gem "skylight"
 

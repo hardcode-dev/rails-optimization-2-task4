@@ -56,3 +56,6 @@ package-lock.json
 
 #sitemap
 /public/sitemap.xml.gz
+
+#newrelic
+newrelic-infra/newrelic-infra.yml
