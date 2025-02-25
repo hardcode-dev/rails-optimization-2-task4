@@ -14,7 +14,7 @@ group :production do
 end
 
 gem "psych", "< 4"
-gem "skylight"
+# gem "skylight"
 
 gem "actionpack-action_caching", "~> 1.2"
 gem "active_record_union", "~> 1.3"
@@ -68,6 +68,7 @@ gem "omniauth", "~> 1.9"
 gem "omniauth-github", "~> 1.3"
 gem "omniauth-twitter", "~> 1.4"
 gem "pg", "~> 1.1"
+gem "pghero", "2.8.3"
 gem "pry", "~> 0.12"
 gem "pry-rails", "~> 0.3"
 gem "puma", "~> 3.12"
@@ -115,6 +116,7 @@ group :development do
   gem "guard", "~> 2.15", require: false
   gem "guard-livereload", "~> 2.5", require: false
   gem "guard-rspec", "~> 4.7", require: false
+  gem "rack-mini-profiler", "3.3.1", require: false
   gem "rb-fsevent", "~> 0.10", require: false
   gem "web-console", "~> 3.7"
 end
